@@ -6,6 +6,15 @@ Electron's BrowserWindow component is a powerful tool for displaying html conten
 
 Instead of having to create hosting html files, either through webpack or manually, ElectronScriptWindow can display a pure javascript source, hosted inside its own dom.
 
+### Install
+Using npm:
+
+`$ npm install electron-script-window`
+
+Using yarn:
+
+`$ yarn add electron-script-window`
+
 ### Documentation
 * `ScriptWindow(...)` - instantiates a BrowserWindow with the passed args.
 * `ScriptWindow.loadUrl(...)` - works exactly as BrowserWindow.loadUrl works, only here you should use a javascript file instead (relative path works).
@@ -23,5 +32,6 @@ let win = new ScriptWindow({title: 'Script Window!'});
 win.browserWindow.maximize();
 win.loadURL('./windows/main/index.js');
 ```
+
 ### License
 This project is MIT licensed. Do whatever you want with it.

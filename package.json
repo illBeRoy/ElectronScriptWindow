@@ -1,5 +1,5 @@
 {
-  "name": "ElectronScriptWindow",
+  "name": "electron-script-window",
   "version": "0.1.0",
   "description": "Electron windows without html files",
   "author": "Roy Sommer",
