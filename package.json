@@ -1,0 +1,23 @@
+{
+  "name": "ElectronScriptWindow",
+  "version": "0.1.0",
+  "description": "Electron windows without having to create html files",
+  "author": "Roy Sommer",
+  "license": "MIT",
+  "main": "bin/index.js",
+  "repository": "https://www.github.com/illberoy/ElectronScriptWindow.git",
+  "scripts": {
+    "clean": "rimraf bin/*",
+    "compile": "babel src --out-dir bin"
+  },
+  "peerDependencies": {
+  	"electron": "^1.4.14"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-preset-es2015": "^6.18.0",
+    "rimraf": "^2.5.4"
+  }
+}
