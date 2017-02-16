@@ -1,7 +1,7 @@
 {
   "name": "ElectronScriptWindow",
   "version": "0.1.0",
-  "description": "Electron windows without having to create html files",
+  "description": "Electron windows without html files",
   "author": "Roy Sommer",
   "license": "MIT",
   "main": "bin/index.js",
