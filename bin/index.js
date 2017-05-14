@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _electron = require('electron');
@@ -33,9 +35,16 @@ var ScriptWindow = function () {
         }
 
         this._browserWindow = new (Function.prototype.bind.apply(_electron.BrowserWindow, [null].concat(args)))();
+        this._head = '';
     }
 
     _createClass(ScriptWindow, [{
+        key: 'addHeadTag',
+        value: function addHeadTag(tag) {
+
+            this._head += tag + '\n';
+        }
+    }, {
         key: 'loadURL',
         value: function loadURL(url) {
             var _browserWindow;
@@ -56,7 +65,17 @@ var ScriptWindow = function () {
         value: function _createProxyHtmlFile(jsUrl) {
 
             var htmlFileName = jsUrl + '.tmp.html';
-            var htmlFileContents = ScriptWindow._HTMLFileContent.replace('{{src}}', _path2.default.basename(jsUrl));
+            var htmlFileContents = ScriptWindow._HTMLFileContent;
+
+            var _arr = [['{{head}}', this._head], ['{{src}}', _path2.default.basename(jsUrl)]];
+            for (var _i = 0; _i < _arr.length; _i++) {
+                var _arr$_i = _slicedToArray(_arr[_i], 2),
+                    replaceThis = _arr$_i[0],
+                    withThis = _arr$_i[1];
+
+                htmlFileContents = htmlFileContents.replace(replaceThis, withThis);
+            }
+
             var htmlFullPath = _path2.default.join(_path2.default.dirname(module.parent.filename), htmlFileName);
 
             _fs2.default.writeFileSync(htmlFullPath, htmlFileContents);
@@ -77,5 +96,5 @@ var ScriptWindow = function () {
     return ScriptWindow;
 }();
 
-ScriptWindow._HTMLFileContent = '\n        <html>\n            <body style="margin: 0">\n                <div id="root"></div>\n            </body>\n            <script type="text/javascript" src="{{src}}"></script>\n        </html>';
+ScriptWindow._HTMLFileContent = '\n        <html>\n            <head>{{head}}</head>\n            <body style="margin: 0">\n                <div id="root"></div>\n            </body>\n            <script type="text/javascript" src="{{src}}"></script>\n        </html>';
 exports.default = ScriptWindow;

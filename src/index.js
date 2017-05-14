@@ -8,6 +8,7 @@ export default class ScriptWindow {
 
     static _HTMLFileContent = `
         <html>
+            <head>{{head}}</head>
             <body style="margin: 0">
                 <div id="root"></div>
             </body>
@@ -17,11 +18,17 @@ export default class ScriptWindow {
     constructor(...args) {
 
         this._browserWindow = new BrowserWindow(...args);
+        this._head = '';
     }
 
     get browserWindow() {
 
         return this._browserWindow;
+    }
+
+    addHeadTag(tag) {
+
+        this._head += `${tag}\n`;
     }
 
     loadURL(url, ...args) {
@@ -37,7 +44,16 @@ export default class ScriptWindow {
     _createProxyHtmlFile(jsUrl) {
 
         let htmlFileName = `${jsUrl}.tmp.html`;
-        let htmlFileContents = ScriptWindow._HTMLFileContent.replace('{{src}}', path.basename(jsUrl));
+        let htmlFileContents = ScriptWindow._HTMLFileContent
+
+        for (let [replaceThis, withThis] of [
+            ['{{head}}', this._head],
+            ['{{src}}', path.basename(jsUrl)]
+        ]) {
+
+            htmlFileContents = htmlFileContents.replace(replaceThis, withThis);
+        }
+
         let htmlFullPath = path.join(path.dirname(module.parent.filename), htmlFileName);
 
         fs.writeFileSync(htmlFullPath, htmlFileContents);
