@@ -30,20 +30,32 @@ export default class ScriptWindow {
         this._head += `${tag}\n`;
     }
 
-    loadURL(url, ...args) {
+    loadURL(url, options) {
 
         if (path.extname(url) == '.js') {
 
             url = this._createProxyHtmlFile(url);
         }
 
-        this.browserWindow.loadURL(url, ...args);
+        let baseUrl = path.join(
+            path.dirname(module.parent.filename),
+            path.dirname(url)
+        );
+
+        console.log(url, baseUrl);
+
+        this.browserWindow.loadURL(
+            url,
+            Object.assign(
+                {baseURLForDataURL: baseUrl},
+                options
+            )
+        );
     }
 
     _createProxyHtmlFile(jsUrl) {
 
-        let htmlFileName = `${jsUrl}.tmp.html`;
-        let htmlFileContents = ScriptWindow._HTMLFileContent
+        let htmlFileContents = ScriptWindow._HTMLFileContent;
 
         for (let [replaceThis, withThis] of [
             ['{{head}}', this._head],

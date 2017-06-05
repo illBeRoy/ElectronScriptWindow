@@ -42,25 +42,23 @@ var ScriptWindow = function () {
         }
     }, {
         key: 'loadURL',
-        value: function loadURL(url) {
-            var _browserWindow;
+        value: function loadURL(url, options) {
 
             if (_path2.default.extname(url) == '.js') {
 
                 url = this._createProxyHtmlFile(url);
             }
 
-            for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-                args[_key2 - 1] = arguments[_key2];
-            }
+            var baseUrl = _path2.default.join(_path2.default.dirname(module.parent.filename), _path2.default.dirname(url));
 
-            (_browserWindow = this.browserWindow).loadURL.apply(_browserWindow, [url].concat(args));
+            console.log(url, baseUrl);
+
+            this.browserWindow.loadURL(url, Object.assign({ baseURLForDataURL: baseUrl }, options));
         }
     }, {
         key: '_createProxyHtmlFile',
         value: function _createProxyHtmlFile(jsUrl) {
 
-            var htmlFileName = jsUrl + '.tmp.html';
             var htmlFileContents = ScriptWindow._HTMLFileContent;
 
             var _arr = [['{{head}}', this._head], ['{{src}}', _path2.default.basename(jsUrl)]];
