@@ -57,7 +57,7 @@ var ScriptWindow = function () {
                 contentsUrl = url;
             }
 
-            var baseUrl = _path2.default.join(_path2.default.dirname(module.parent.filename), _path2.default.dirname(url));
+            var baseUrl = _path2.default.join(_path2.default.dirname(module.parent.filename), url);
 
             baseUrl = _url2.default.format({
                 pathname: baseUrl,

@@ -44,7 +44,7 @@ export default class ScriptWindow {
 
         let baseUrl = path.join(
             path.dirname(module.parent.filename),
-            path.dirname(url)
+            url
         );
 
         baseUrl = urllib.format({
