@@ -10,14 +10,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _electron = require('electron');
 
-var _url = require('url');
-
-var _url2 = _interopRequireDefault(_url);
-
-var _fs = require('fs');
-
-var _fs2 = _interopRequireDefault(_fs);
-
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
