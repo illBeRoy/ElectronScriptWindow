@@ -1,5 +1,6 @@
 import {BrowserWindow} from 'electron';
 import path from 'path';
+import base64 from 'base-64';
 
 
 export default class ScriptWindow {
@@ -52,7 +53,7 @@ export default class ScriptWindow {
             htmlFileContents = htmlFileContents.replace(replaceThis, withThis);
         }
 
-        return `data:text/html;charset=utf-8,${encodeURI(htmlFileContents)}`
+        return `data:text/html;charset=utf-8,${base64.encode(htmlFileContents)}`
     }
 
 }

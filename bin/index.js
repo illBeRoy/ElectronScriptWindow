@@ -14,6 +14,10 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
+var _base = require('base-64');
+
+var _base2 = _interopRequireDefault(_base);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68,7 +72,7 @@ var ScriptWindow = function () {
                 htmlFileContents = htmlFileContents.replace(replaceThis, withThis);
             }
 
-            return 'data:text/html;charset=utf-8,' + encodeURI(htmlFileContents);
+            return 'data:text/html;charset=utf-8,' + _base2.default.encode(htmlFileContents);
         }
     }, {
         key: 'browserWindow',
