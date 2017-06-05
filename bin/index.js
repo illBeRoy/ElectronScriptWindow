@@ -76,14 +76,7 @@ var ScriptWindow = function () {
                 htmlFileContents = htmlFileContents.replace(replaceThis, withThis);
             }
 
-            var htmlFullPath = _path2.default.join(_path2.default.dirname(module.parent.filename), htmlFileName);
-
-            _fs2.default.writeFileSync(htmlFullPath, htmlFileContents);
-
-            return _url2.default.format({
-                pathname: htmlFullPath,
-                protocol: 'file:'
-            });
+            return 'data:text/html;charset=utf-8,' + encodeURI(htmlFileContents);
         }
     }, {
         key: 'browserWindow',

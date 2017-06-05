@@ -54,14 +54,7 @@ export default class ScriptWindow {
             htmlFileContents = htmlFileContents.replace(replaceThis, withThis);
         }
 
-        let htmlFullPath = path.join(path.dirname(module.parent.filename), htmlFileName);
-
-        fs.writeFileSync(htmlFullPath, htmlFileContents);
-
-        return url.format({
-            pathname: htmlFullPath,
-            protocol: 'file:'
-        });
+        return `data:text/html;charset=utf-8,${encodeURI(htmlFileContents)}`
     }
 
 }
