@@ -10,6 +10,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _electron = require('electron');
 
+var _url = require('url');
+
+var _url2 = _interopRequireDefault(_url);
+
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
@@ -54,6 +58,11 @@ var ScriptWindow = function () {
             }
 
             var baseUrl = _path2.default.join(_path2.default.dirname(module.parent.filename), _path2.default.dirname(url));
+
+            baseUrl = url.format({
+                pathname: baseUrl,
+                protocol: 'file:'
+            });
 
             console.log(url, baseUrl);
 

@@ -1,4 +1,5 @@
 import {BrowserWindow} from 'electron';
+import url from 'url';
 import path from 'path';
 import base64 from 'base-64';
 
@@ -32,7 +33,7 @@ export default class ScriptWindow {
 
     loadURL(url, options) {
 
-        let contentsUrl
+        let contentsUrl;
         if (path.extname(url) == '.js') {
 
             contentsUrl = this._createProxyHtmlFile(url);
@@ -45,6 +46,11 @@ export default class ScriptWindow {
             path.dirname(module.parent.filename),
             path.dirname(url)
         );
+
+        baseUrl = url.format({
+            pathname: baseUrl,
+            protocol: 'file:'
+        });
 
         console.log(url, baseUrl);
 
