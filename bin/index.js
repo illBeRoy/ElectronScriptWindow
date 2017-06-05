@@ -72,7 +72,7 @@ var ScriptWindow = function () {
                 htmlFileContents = htmlFileContents.replace(replaceThis, withThis);
             }
 
-            return 'data:text/html;charset=utf-8,' + _base2.default.encode(htmlFileContents);
+            return 'data:text/html;base64,' + _base2.default.encode(htmlFileContents);
         }
     }, {
         key: 'browserWindow',

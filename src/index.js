@@ -53,7 +53,7 @@ export default class ScriptWindow {
             htmlFileContents = htmlFileContents.replace(replaceThis, withThis);
         }
 
-        return `data:text/html;charset=utf-8,${base64.encode(htmlFileContents)}`
+        return `data:text/html;base64,${base64.encode(htmlFileContents)}`
     }
 
 }
