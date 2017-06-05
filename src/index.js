@@ -52,8 +52,6 @@ export default class ScriptWindow {
             protocol: 'file:'
         });
 
-        console.log(url, baseUrl);
-
         this.browserWindow.loadURL(
             contentsUrl,
             Object.assign(

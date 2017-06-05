@@ -64,8 +64,6 @@ var ScriptWindow = function () {
                 protocol: 'file:'
             });
 
-            console.log(url, baseUrl);
-
             this.browserWindow.loadURL(contentsUrl, Object.assign({ baseURLForDataURL: baseUrl }, options));
         }
     }, {

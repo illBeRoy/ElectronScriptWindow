@@ -1,6 +1,6 @@
 {
   "name": "electron-script-window",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Electron windows without html files",
   "author": "Roy Sommer",
   "license": "MIT",
