@@ -44,16 +44,20 @@ var ScriptWindow = function () {
         key: 'loadURL',
         value: function loadURL(url, options) {
 
+            var contentsUrl = void 0;
             if (_path2.default.extname(url) == '.js') {
 
-                url = this._createProxyHtmlFile(url);
+                contentsUrl = this._createProxyHtmlFile(url);
+            } else {
+
+                contentsUrl = url;
             }
 
             var baseUrl = _path2.default.join(_path2.default.dirname(module.parent.filename), _path2.default.dirname(url));
 
             console.log(url, baseUrl);
 
-            this.browserWindow.loadURL(url, Object.assign({ baseURLForDataURL: baseUrl }, options));
+            this.browserWindow.loadURL(contentsUrl, Object.assign({ baseURLForDataURL: baseUrl }, options));
         }
     }, {
         key: '_createProxyHtmlFile',

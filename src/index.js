@@ -32,9 +32,13 @@ export default class ScriptWindow {
 
     loadURL(url, options) {
 
+        let contentsUrl
         if (path.extname(url) == '.js') {
 
-            url = this._createProxyHtmlFile(url);
+            contentsUrl = this._createProxyHtmlFile(url);
+        } else {
+
+            contentsUrl = url;
         }
 
         let baseUrl = path.join(
@@ -45,7 +49,7 @@ export default class ScriptWindow {
         console.log(url, baseUrl);
 
         this.browserWindow.loadURL(
-            url,
+            contentsUrl,
             Object.assign(
                 {baseURLForDataURL: baseUrl},
                 options
