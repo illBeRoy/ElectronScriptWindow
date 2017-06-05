@@ -59,7 +59,7 @@ var ScriptWindow = function () {
 
             var baseUrl = _path2.default.join(_path2.default.dirname(module.parent.filename), _path2.default.dirname(url));
 
-            baseUrl = url.format({
+            baseUrl = _url2.default.format({
                 pathname: baseUrl,
                 protocol: 'file:'
             });

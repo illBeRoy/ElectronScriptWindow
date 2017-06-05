@@ -1,5 +1,5 @@
 import {BrowserWindow} from 'electron';
-import url from 'url';
+import urllib from 'url';
 import path from 'path';
 import base64 from 'base-64';
 
@@ -47,7 +47,7 @@ export default class ScriptWindow {
             path.dirname(url)
         );
 
-        baseUrl = url.format({
+        baseUrl = urllib.format({
             pathname: baseUrl,
             protocol: 'file:'
         });
